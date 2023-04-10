@@ -4,7 +4,3 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  background-color: darkgrey;
-}
-

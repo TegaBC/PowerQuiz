@@ -1,5 +1,3 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-
 <p align="center">
   <img src="https://user-images.githubusercontent.com/64938182/231021678-eca79569-e647-4b93-9239-ae7e62ecd321.png" width="300">
 </p>
@@ -9,7 +7,7 @@
     <br />  <br />
     <a href="#" target="_blank">View Demo</a> (Soon)
     ·
-    <a href="https://github.com/TegaBC/bike-rental-site/issues">Report Bug</a>
+    <a href="https://github.com/TegaBC/PowerQuiz/issues">Report Bug</a>
   </p>
 </div>
 

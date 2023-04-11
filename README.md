@@ -30,7 +30,7 @@
 ### Landing page
 ![image_2023-04-11_044424837](https://user-images.githubusercontent.com/64938182/231050743-0ba9c37e-6880-4c6d-ab7c-e0c2ac12d3e9.png)
 
-### Bottom of ladning page
+### Bottom of landing page
 ![image_2023-04-11_044535051](https://user-images.githubusercontent.com/64938182/231050865-20a1a93a-64ec-4419-becc-3d0c4c8bc0c4.png)
 
 Note that the testimonials seen are fictional and are only placeholders. <br />

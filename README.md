@@ -22,8 +22,8 @@
 ## Features
 - [ ] Authentication
 - [ ] Analytics Dashboard
-- [ ] Easy to use quizz builder
-- [ ] Automated grading
+- [ ] Easy to use quiz builder
+- [ ] Automatic grading
 - [ ] Student feedback
 
 ## Screenshots

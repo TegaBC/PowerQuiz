@@ -1,0 +1,3 @@
+// Just a side file to remember to attribute any icons used
+
+<a href="https://www.flaticon.com/free-icons/paper" title="paper icons">Paper icons created by Pixel perfect - Flaticon</a>

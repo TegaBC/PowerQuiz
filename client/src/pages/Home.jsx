@@ -49,12 +49,18 @@ const quotes = [
         img: imgFemale
     },
     {
-        heading: "Richard",
+        heading: "Lucas",
         subheading: "Grade 12 Teacher",
         body: "The analytics dashboard is fantastic. It gives me valuable insights into how my students are doing and helps me tailor my lessons to their needs.",
         img: imgMale2
     },
 ]
+
+// call to action object
+const action = {
+    heading: ["Empower Teachers.", "Inspire Students."],
+    body: "Now you're already at the bottom of the page, lets sign you up to start creating your pop quizzes for your class today!"
+}
 
 export default function HomePage() {
    return(
@@ -70,7 +76,7 @@ export default function HomePage() {
             <QuoteCard quote={quotes[1]}/>
             <QuoteCard quote={quotes[2]}/>
         </div>
-        <CallToAction />
+        <CallToAction action={action} />
     </>
     )
 }

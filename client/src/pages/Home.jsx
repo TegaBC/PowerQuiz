@@ -3,6 +3,7 @@ import NavBar from "../components/Navbar"
 import HeroSection from "../components/Hero"
 import FeatureDisplay from "../components/FeatureDisplay"
 import QuoteCard from "../components/QuoteCard"
+import Footer from "../components/Footer"
 
 // images for features
 import imgGroup from "../images/group.png"
@@ -77,6 +78,7 @@ export default function HomePage() {
             <QuoteCard quote={quotes[2]}/>
         </div>
         <CallToAction action={action} />
+        <Footer />
     </>
     )
 }

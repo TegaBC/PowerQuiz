@@ -1,7 +1,7 @@
 export default function HeroSection() {
     return(
         <div className="flex flex-col text-5xl items-center mx-5 mt-20">
-            <h1 className="text-center text-6xl font-bold my-16 max-w-4xl">
+            <h1 className="text-center text-8xl font-bold mt-16 mb-8 max-w-7xl">
                 <span className="text-cyan-500">Create.</span>
                 <span className="text-lime-500"> Discover.</span>
                 <span className="text-fuchsia-500"> Learn. </span>

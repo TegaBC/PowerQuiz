@@ -13,6 +13,12 @@
   </p>
 </div>
 
+## Tech Stack
+- MongoDB
+- Express / Node
+- Tailwind
+- React
+
 ## Features
 - [ ] Authentication
 - [ ] Analytics Dashboard

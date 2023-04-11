@@ -14,9 +14,9 @@ function createFeatures(feature) {
 
 export default function FeatureDisplay ( { features } ) {
     return (
-        <div className="flex justify-center mx-8">
+        <div className="flex justify-center mt-24 mx-8 ">
             <div className="flex gap-10 max-w-[1400px] 
-            items-center justify-center mt-32 flex-wrap">
+            items-center justify-center flex-wrap">
             {features.map(createFeatures)}
             </div>
         </div>

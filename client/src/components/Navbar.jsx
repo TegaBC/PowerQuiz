@@ -10,7 +10,7 @@ export default function NavBar() {
             <div className="hidden sm:flex justify-evenly gap-5 font-semibold max-h-8 items-center">
               
                 <button className="text-slate-500 hover:text-black transition-colors">Login</button>
-                <button className="bg-main rounded-full p-2 px-4 text-white">Get Started</button>
+                <button className="bg-main rounded-full py-3 px-4 text-white transition-colors hover:bg-main2">Get Started</button>
             </div>
         </div>
     )

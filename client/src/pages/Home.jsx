@@ -60,7 +60,8 @@ const quotes = [
 // call to action object
 const action = {
     heading: ["Empower Teachers.", "Inspire Students."],
-    body: "Now you're already at the bottom of the page, lets sign you up to start creating your pop quizzes for your class today!"
+    body: "Now you're already at the bottom of the page, lets sign you up to start creating your pop quizzes for your class today!",
+    buttonText: "Sign Up for free"
 }
 
 export default function HomePage() {

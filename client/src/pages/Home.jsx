@@ -62,7 +62,7 @@ export default function HomePage() {
         <HeroSection />
         <FeatureDisplay features={featureDisplay}/>
         <h1 className="text-center text-6xl font-bold mt-24">
-            See what others had to say about us.
+            See what others have to say about us.
         </h1>
         <div className="flex justify-center gap-12 mt-10 mb-24 flex-wrap p-4">
             <QuoteCard quote={quotes[0]}/>

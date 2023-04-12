@@ -1,14 +1,20 @@
-import { useRef } from "react"
-import { Link } from "react-router-dom"
+import { useRef, useState } from "react"
+import { Link, redirect, useNavigate } from "react-router-dom"
+import { serverAddress } from "../config"
 
 export default function RegisterPage() {
+    const [serverError, setServerError] = useState("")
+    const navigate = useNavigate()
+
     const nameField = useRef()
     const emailField = useRef()
     const passwordField = useRef()
     const confirmPasswordField = useRef()
    
-    function submitForm(e) {
+    async function submitForm(e) {
         e.preventDefault()
+
+        setServerError(false) // clear any errors
 
         // check for simple password mismatch, html will take care of the rest.
         if (passwordField.current.value !== confirmPasswordField.current.value) {
@@ -17,6 +23,25 @@ export default function RegisterPage() {
         } 
         
         // submit register to server, redirect to log in page if successful or spit out error text if needed.
+        try {
+            const response = await fetch(`${serverAddress}/register` , {
+                    method: "post",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: nameField.current.value,
+                        email: emailField.current.value,
+                        password: passwordField.current.value
+                    })
+                }
+            )
+
+            const body = await response.json()  
+            response.ok ? navigate("/login") : setServerError(body)    
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     return (<div className="flex bg-main h-screen items-center justify-center">
@@ -44,6 +69,8 @@ export default function RegisterPage() {
                 className="h-12 px-4 border-2 border-slate-300 rounded-md"  
                 type="text" placeholder="Confirm Password" minLength={8} required/>
                 
+                {serverError && <span className="text-red-500">{"Error: " + serverError}</span>}
+
                 <button className="bg-main rounded-md h-12
                  text-white font-semibold hover:bg-main2 transition-colors" type="submit">
                     Sign Up!

@@ -9,7 +9,7 @@ export default function LoginPage() {
         
         // send login to server
     }
-
+    
     return (
     <div className="flex bg-main h-screen items-center justify-center">
         <div className="bg-white h-full sm:h-auto flex flex-col px-8 justify-center
@@ -22,10 +22,10 @@ export default function LoginPage() {
 
             <form onSubmit={onSubmit} className="flex flex-col gap-6 mb-4 font-medium">
                 <input ref={email} className="h-12 px-4 border-2 border-slate-300 rounded-md"  
-                type="email" placeholder="Enter Email" />
+                type="email" placeholder="Enter Email" required/>
 
                 <input ref={password} className="h-12 px-4 border-2 border-slate-300 rounded-md"  
-                type="password" placeholder="Enter Password" />
+                type="password" placeholder="Enter Password" required/>
                 
                 <button className="bg-main rounded-md h-12
                 text-white font-semibold hover:bg-main2 transition-colors" type="submit">

@@ -30,13 +30,13 @@ export default function RegisterPage() {
 
             <form onSubmit={submitForm} className="flex flex-col gap-6 mb-4 font-medium">
                 <input ref={nameField} className="h-12 px-4 border-2 border-slate-300 rounded-md" 
-                type="text" placeholder="Enter Name" minLength={3} required/>
+                type="text" placeholder="Enter Name" minLength={3} maxLength={50} required/>
                 
                 <input ref={emailField} className="h-12 px-4 border-2 border-slate-300 rounded-md"  
                 type="email" placeholder="Enter Email" required/>
 
                 <input ref={passwordField} className="h-12 px-4 border-2 border-slate-300 rounded-md"  
-                type="text" placeholder="Create Password" minLength={8} required/>
+                type="text" placeholder="Create Password" minLength={8} maxLength={128} required/>
 
                 {/** When this input is typed in, clear the validity 
                  * so that they form can be submitted, validity will be checked before submission*/}

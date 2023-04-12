@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 
 export default function RegisterPage() {
     return (<div className="flex bg-main h-screen items-center justify-center">
-        <div className="bg-white flex flex-col px-8 
-        box-border py-12 min-h-[600px] w-full sm:w-[450px]  rounded-2xl shadow-md">
+        <div className="bg-white flex flex-col px-8 h-full sm:h-auto justify-center
+        box-border py-12 min-h-[600px] w-full sm:w-[450px] sm:rounded-2xl shadow-md">
            
             <div className="mb-8">
                 <h1 className="text-2xl font-semibold">Create account</h1>

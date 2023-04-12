@@ -3,8 +3,8 @@
 export default function LoginPage() {
     return (
     <div className="flex bg-main h-screen items-center justify-center">
-        <div className="bg-white flex flex-col px-8 
-        box-border py-12 w-full sm:w-[450px]  rounded-2xl shadow-md">
+        <div className="bg-white h-full sm:h-auto flex flex-col px-8 justify-center
+        box-border py-12 w-full sm:w-[450px] sm:rounded-xl shadow-md">
         
             <div className="mb-10">
                 <h1 className="text-2xl font-semibold">Login</h1>

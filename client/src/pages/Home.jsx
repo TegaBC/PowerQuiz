@@ -70,10 +70,10 @@ export default function HomePage() {
         <NavBar />
         <HeroSection />
         <FeatureDisplay features={featureDisplay}/>
-        <h1 className="text-center text-6xl font-bold mt-24">
+        <h1 className="text-center text-4xl sm:text-6xl font-bold mt-24 px-8">
             See what others have to say about us.
         </h1>
-        <div className="flex justify-center gap-12 mt-10 mb-24 flex-wrap p-4">
+        <div className="flex justify-center gap-12 mt-10 mb-12 sm:mb-24 flex-wrap p-4">
             <QuoteCard quote={quotes[0]}/>
             <QuoteCard quote={quotes[1]}/>
             <QuoteCard quote={quotes[2]}/>

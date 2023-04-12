@@ -19,10 +19,10 @@ function renderAction(actionInfo, action) {
 
 export default function CallToAction( { actionInfo, action} ) {
     return(
-        <div className="flex flex-wrap justify-center gap-20 items-start mb-10">
-            <h1 className="text-6xl font-bold text-center">{actionInfo.heading[0]}<br /> {actionInfo.heading[1]}</h1>
+        <div className="flex flex-wrap justify-center gap-8 sm:gap-20 items-start mb-10">
+            <h1 className="text-4xl sm:text-6xl font-bold text-center">{actionInfo.heading[0]}<br /> {actionInfo.heading[1]}</h1>
             <div className="flex flex-col items-center max-w-lg gap-8">
-                <p className="text-xl font-medium text-center">{actionInfo.body}</p>
+                <p className="px-8 sm:text-xl font-medium text-center">{actionInfo.body}</p>
                 { renderAction(actionInfo, action) } 
             </div>
         </div>

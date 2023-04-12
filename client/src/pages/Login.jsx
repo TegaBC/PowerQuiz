@@ -1,6 +1,15 @@
-
+import { useRef, useState } from "react"
 
 export default function LoginPage() {
+    const email = useRef()
+    const password = useRef()
+
+    function onSubmit(e) {
+        e.preventDefault()
+        
+        // send login to server
+    }
+
     return (
     <div className="flex bg-main h-screen items-center justify-center">
         <div className="bg-white h-full sm:h-auto flex flex-col px-8 justify-center
@@ -11,11 +20,13 @@ export default function LoginPage() {
                 <p className="text-md">Welcome back, we missed you.</p>
         </div>
 
-            <form className="flex flex-col gap-6 mb-4 font-medium">
-                <input className="h-12 px-4 border-2 border-slate-300 rounded-md"  
+            <form onSubmit={onSubmit} className="flex flex-col gap-6 mb-4 font-medium">
+                <input ref={email} className="h-12 px-4 border-2 border-slate-300 rounded-md"  
                 type="email" placeholder="Enter Email" />
-                <input className="h-12 px-4 border-2 border-slate-300 rounded-md"  
+
+                <input ref={password} className="h-12 px-4 border-2 border-slate-300 rounded-md"  
                 type="password" placeholder="Enter Password" />
+                
                 <button className="bg-main rounded-md h-12
                 text-white font-semibold hover:bg-main2 transition-colors" type="submit">
                     Login

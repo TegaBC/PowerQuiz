@@ -11,18 +11,32 @@ export const registerUser = async (req, res) => {
 
     if (name.length < 3 || name.length > 50) {
         res.status(400).send("Name does not reach requirements")
+        return
     }
 
     if (password.length < 8 || password.length > 128) {
         res.status(400).send("Password does not reach requirements")
+        return
     }
 
     if (email.length > 50 || !emailRegex.test(email)) {
         res.status(400).send("Email does not reach requirements")
+        return
+    }
+
+    // check a user does not already exist with this email
+    try {
+        const user = await userModel.findOne( {email: email} )
+        if (user) {
+            res.status(400).send("An account with this email already exists")
+            return
+        }
+    } catch(err) {
+        res.status(500).send("Error creating user")
     }
 
     // create hashed password
-    const hashedPassword = bcrypt.hash(password, saltRounds)
+    const hashedPassword = await bcrypt.hash(password, saltRounds)
 
     // Create user
     try {

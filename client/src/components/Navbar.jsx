@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Logo from "../assets/logo.png"
 
 export default function NavBar() {
@@ -9,8 +10,8 @@ export default function NavBar() {
                 </svg>
             <div className="hidden sm:flex justify-evenly gap-5 font-semibold max-h-8 items-center">
               
-                <button className="text-slate-500 hover:text-black transition-colors">Login</button>
-                <button className="bg-main rounded-full py-3 px-4 text-white transition-colors hover:bg-main2">Get Started</button>
+                <Link to="/login" className="text-slate-500 hover:text-black transition-colors">Login</Link>
+                <Link to="/register" className="bg-main rounded-full py-3 px-4 text-white transition-colors hover:bg-main2">Get Started</Link>
             </div>
         </div>
     )

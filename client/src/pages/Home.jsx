@@ -78,7 +78,7 @@ export default function HomePage() {
             <QuoteCard quote={quotes[1]}/>
             <QuoteCard quote={quotes[2]}/>
         </div>
-        <CallToAction action={action} />
+        <CallToAction actionInfo={action} action="/register" />
         <Footer />
     </>
     )

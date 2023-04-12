@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default function HeroSection() {
     return(
         <div className="flex flex-col text-5xl items-center mx-5 mt-36">
@@ -10,9 +12,9 @@ export default function HeroSection() {
             <p className="text-center text-xl font-normal max-w-2xl text-slate-500">
                 Join other teachers, empowering their classroom and students by creating and completing pop quizzes!    
             </p>      
-            <button className="bg-main rounded-full py-4 px-7 mt-12 text-base font-bold text-white transition-colors hover:bg-main2">
+            <Link to="/register" className="bg-main rounded-full py-4 px-7 mt-12 text-base font-bold text-white transition-colors hover:bg-main2">
                 Get started for free
-            </button>
+            </Link>
         </div>
     )
 }

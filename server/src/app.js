@@ -11,10 +11,10 @@ import registerRouter from "./routes/register.js"
 dotenv.config()
 
 const app = express()
-const port = process.env.PORT || 5050
+const port = 8080
 
 // middleware
-app.use(cors)
+app.use(cors())
 app.use(express.json())
 
 // routes

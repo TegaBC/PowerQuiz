@@ -1,29 +1,36 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { serverAddress } from "../config"
 
 export default function LoginPage() {
+    const [errorMessage, setErrorMessage] = useState("")
+
     const email = useRef()
     const password = useRef()
 
+    // submit form, if the response is not okay, show client error. if correct go to dashboard
     async function onSubmit(e) {
         e.preventDefault()
         
        try {
-        const response = await fetch(`${serverAddress}/login`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json",
-                credentials: "include"
-            },
-            body: JSON.stringify({
-                email: email.current.value,
-                password: password.current.value
-            })   
-        })
+            const response = await fetch(`${serverAddress}/login`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    credentials: "include"
+                },
+                body: JSON.stringify({
+                    email: email.current.value,
+                    password: password.current.value
+                })   
+            })
 
-        const body = await response.json()
-
-        console.log(body, response)
+            const body = await response.json()
+            if (response.ok) {
+                console.log("Logged in")
+                // go to dashboard
+            } else {
+                setErrorMessage(body)
+            }
        } catch(err) {
         console.log("Error: ", err)
        }    
@@ -45,7 +52,7 @@ export default function LoginPage() {
 
                 <input ref={password} className="h-12 px-4 border-2 border-slate-300 rounded-md"  
                 type="password" placeholder="Enter Password" required/>
-                
+                {errorMessage && <span className="text-red-500">Error: {errorMessage}</span>}
                 <button className="bg-main rounded-md h-12
                 text-white font-semibold hover:bg-main2 transition-colors" type="submit">
                     Login

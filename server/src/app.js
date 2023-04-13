@@ -28,6 +28,7 @@ app.use("/register", registerRouter)
 app.use("/login", loginRouter)
 
 app.get("/", (req, res) => {
+    console.log(req.cookies)
     res.status(200).json("Ok")
 })
 

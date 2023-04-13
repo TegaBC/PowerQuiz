@@ -70,7 +70,7 @@ export default function HomePage() {
         <NavBar />
         <HeroSection />
         <FeatureDisplay features={featureDisplay}/>
-        <h1 className="text-center text-4xl sm:text-6xl font-bold mt-24 px-8">
+        <h1 className="text-center text-3xl sm:text-6xl font-bold mt-24 px-8">
             See what others have to say about us.
         </h1>
         <div className="flex justify-center gap-12 mt-10 mb-12 sm:mb-24 flex-wrap p-4">

@@ -61,13 +61,13 @@ export default function RegisterPage() {
                 type="email" placeholder="Enter Email" required/>
 
                 <input ref={passwordField} className="h-12 px-4 border-2 border-slate-300 rounded-md"  
-                type="text" placeholder="Create Password" minLength={8} maxLength={128} required/>
+                type="password" placeholder="Create Password" minLength={8} maxLength={128} required/>
 
                 {/** When this input is typed in, clear the validity 
                  * so that they form can be submitted, validity will be checked before submission*/}
                 <input ref={confirmPasswordField} onChange={() => { confirmPasswordField.current.setCustomValidity("")}} 
                 className="h-12 px-4 border-2 border-slate-300 rounded-md"  
-                type="text" placeholder="Confirm Password" minLength={8} required/>
+                type="password" placeholder="Confirm Password" minLength={8} required/>
                 
                 {serverError && <span className="text-red-500">{"Error: " + serverError}</span>}
 

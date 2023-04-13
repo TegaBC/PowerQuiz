@@ -1,13 +1,32 @@
-import { useRef, useState } from "react"
+import { useRef } from "react"
+import { serverAddress } from "../config"
 
 export default function LoginPage() {
     const email = useRef()
     const password = useRef()
 
-    function onSubmit(e) {
+    async function onSubmit(e) {
         e.preventDefault()
         
-        // send login to server
+       try {
+        const response = await fetch(`${serverAddress}/login`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                credentials: "include"
+            },
+            body: JSON.stringify({
+                email: email.current.value,
+                password: password.current.value
+            })   
+        })
+
+        const body = await response.json()
+
+        console.log(body, response)
+       } catch(err) {
+        console.log("Error: ", err)
+       }    
     }
     
     return (

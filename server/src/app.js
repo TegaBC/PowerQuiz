@@ -1,6 +1,7 @@
 // Dependencies
 import express from "express"
 import mongoose from "mongoose"
+import cookieParser from "cookie-parser"
 import dotenv from "dotenv"
 import cors from "cors"
 
@@ -15,12 +16,20 @@ const app = express()
 const port = 8080
 
 // middleware
-app.use(cors())
+app.use(cors({
+    origin: process.env.DOMAIN,
+    credentials: true,
+}))
 app.use(express.json())
+app.use(cookieParser())
 
 // routes
 app.use("/register", registerRouter)
 app.use("/login", loginRouter)
+
+app.get("/", (req, res) => {
+    res.status(200).json("Ok")
+})
 
 // Connect to mongodb
 mongoose.connect(process.env.MONGO_URI, {

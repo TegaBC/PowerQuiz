@@ -6,6 +6,7 @@ import cors from "cors"
 
 // Routers
 import registerRouter from "./routes/register.js"
+import loginRouter from "./routes/login.js"
 
 // Setup env, and express
 dotenv.config()
@@ -19,6 +20,7 @@ app.use(express.json())
 
 // routes
 app.use("/register", registerRouter)
+app.use("/login", loginRouter)
 
 // Connect to mongodb
 mongoose.connect(process.env.MONGO_URI, {

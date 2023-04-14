@@ -31,7 +31,7 @@ export default function LoginPage() {
             if (response.ok) {
                 navigator(body.redirectUrl)
             } else {
-                setErrorMessage(body)
+                setErrorMessage(body.message)
             }
        } catch(err) {
         console.log("Error: ", err)

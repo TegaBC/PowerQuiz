@@ -11,10 +11,10 @@ export const loginUser = async (req, res) => {
 
     // check on user and password
     const user = await userModel.findOne({ email: email })
-    if (!user) return res.status(401).json("User with provided email does not exist")
+    if (!user) return res.status(401).json({message: "User with provided email does not exist"})
 
     const correctPassword = await bcrypt.compare(password, user.password)
-    if (!correctPassword) return res.status(401).json("Wrong password")
+    if (!correctPassword) return res.status(401).json({message: "Wrong password"})
 
     // generate jwt token, remove password so it doesn't get sent in the string
     const token = jwt.sign({email: user.email, name: user.name}, process.env.TOKEN_KEY, { expiresIn: "5m" })

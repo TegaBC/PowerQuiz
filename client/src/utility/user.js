@@ -3,7 +3,7 @@ import jwtDecode from "jwt-decode"
 import { getCookies } from "./cookie"
 
 export const isUserLoggedIn = () => {     // check cookie to see if user is logged in
-
+    
     const cookies = getCookies()
     const sessionToken = cookies["session"]
     if(!sessionToken) return 

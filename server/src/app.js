@@ -8,6 +8,7 @@ import cors from "cors"
 // Routers
 import registerRouter from "./routes/register.js"
 import loginRouter from "./routes/login.js"
+import quizRouter from "./routes/quiz.js"
 
 // Setup env, and express
 dotenv.config()
@@ -24,6 +25,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 // routes
+app.use("/quiz", quizRouter)
 app.use("/register", registerRouter)
 app.use("/login", loginRouter)
 

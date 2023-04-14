@@ -38,7 +38,7 @@ export default function RegisterPage() {
             )
 
             const body = await response.json()  
-            response.ok ? navigate("/login") : setServerError(body)    
+            response.ok ? navigate(body.redirectUrl) : setServerError(body.message)    
         } catch(err) {
             console.log(err)
         }

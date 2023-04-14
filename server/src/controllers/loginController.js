@@ -19,5 +19,5 @@ export const loginUser = async (req, res) => {
     // generate jwt token, remove password so it doesn't get sent in the string
     const token = jwt.sign({email: user.email, name: user.name}, process.env.TOKEN_KEY, { expiresIn: "5m" })
 
-    res.cookie("session", token, {secure: true}).status(200).json("Logged in.")
+    return res.cookie("session", token, {secure: true}).status(200).json({redirectUrl: "/dashboard", message: "Successful"})
 }

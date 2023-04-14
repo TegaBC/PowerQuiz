@@ -1,8 +1,10 @@
 import { useRef, useState } from "react"
 import { serverAddress } from "../config"
+import { useNavigate } from "react-router-dom"
 
 export default function LoginPage() {
     const [errorMessage, setErrorMessage] = useState("")
+    const navigator = useNavigate() 
 
     const email = useRef()
     const password = useRef()
@@ -25,9 +27,9 @@ export default function LoginPage() {
             })
 
             const body = await response.json()
+
             if (response.ok) {
-                console.log("Logged in")
-                // go to dashboard
+                navigator(body.redirectUrl)
             } else {
                 setErrorMessage(body)
             }

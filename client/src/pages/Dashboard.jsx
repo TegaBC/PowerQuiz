@@ -2,11 +2,12 @@ import { Link } from "react-router-dom"
 import NavBar from "../components/Navbar"
 import DeletePortal from "../components/DeletePortal"
 import BackgroundImage from "../images/backgroundquiz.png"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 
 export default function DashboardPage() {
-    const [portalOpen, setPortalOpen] = useState(true)
+    const [portalOpen, setPortalOpen] = useState(false)
+    const promptedQuizDeleteId = useRef(null)
 
     useEffect(() => {
         // GET quizzes
@@ -23,25 +24,27 @@ export default function DashboardPage() {
     // close portal, open portal when del is clicked
     function onPortalClose() {
         setPortalOpen(false)
+        console.log("Modal closed, delete aborted.")
     }
 
-    function promptDeleteQuiz () {
+    function promptDeleteQuiz(e) {
+       // promptedQuizDeleteId.current = {some sort of uid}
         setPortalOpen(true)
     }
 
-    function portalDelete() {
+    function portalDelete(e) {
         setPortalOpen(false)
-
         // run logic to delete the quiz
+        console.log("Deleted quiz")
+       
+        e.stopPropagation()
     }
 
     return (
         <>
             <NavBar />
             <div className="flex flex-col bg-slate-100 py-8 px-16 items-center h-screen">
-                
                 <p className="mb-8 font-light text-3xl">Hello, Tega.</p>
-
                 <div className="mb-8">
                     <Link className="bg-main p-3 rounded-xl text-white font-semibold flex justify-center 
                     gap-2 max-w-[170px] transition-colors hover:bg-main2">
@@ -53,14 +56,13 @@ export default function DashboardPage() {
                 </div>
 
                 <h1 className="font-medium">View Quizzes</h1>
-                <DeletePortal open={portalOpen} onClose={onPortalClose} onDelete={portalDelete}/>
+                <DeletePortal open={portalOpen} closeModal={onPortalClose} onDelete={portalDelete}/>
                 
                 <div className="mt-4 flex flex-wrap gap-8">
                     <Link className="flex flex-col min-w-xs rounded-xl border-2 
                     min-h-[230px] min-w-[200px] overflow-hidden border-slate-300 hover:border-slate-700 transition-colors">
                         <div className="bg-main h-[60%] w-60 overflow-clip">
-                        <img className="h-full w-full object-cover" src={BackgroundImage} alt="" />
-
+                            <img className="h-full w-full object-cover" src={BackgroundImage} alt="" />
                         </div>
                         <div className="flex bg-white flex-grow items-center justify-between pl-4 pr-8">
                             <div className=" flex flex-col justify-center">

@@ -51,6 +51,8 @@ export default function DashboardPage() {
         e.stopPropagation()
     }
 
+    if (!isLoggedIn) return null // will be redirected to login
+
     return (
         <>
             <NavBar />

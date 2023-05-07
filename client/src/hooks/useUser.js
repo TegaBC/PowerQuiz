@@ -6,7 +6,7 @@ import { useRef, useState } from "react"
 export const useUser = () => {
     const [loggedIn, setLoggedIn] = useState(false)
     const userRef = useRef(null)
-
+    
     const cookies = getCookies()
     const sessionToken = cookies["session"]
 

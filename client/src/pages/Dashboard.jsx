@@ -1,17 +1,19 @@
+// components
 import NavBar from "../components/Navbar"
 import DeletePortal from "../components/DeletePortal"
 import QuizCard from "../components/QuizCard"
 
+// hooks
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
-
-import { isUserLoggedIn } from "../utility/user"
+import { useUser } from "../hooks/useUser"
 
 export default function DashboardPage() {
     const navigator = useNavigate()
     const [quizzes, setQuizzes] = useState([])
     const [portalOpen, setPortalOpen] = useState(false)
     const promptedQuizDeleteId = useRef(null)
+    const [isLoggedIn, user] = useUser()
 
     /**
      *  Quiz object
@@ -23,7 +25,7 @@ export default function DashboardPage() {
 
     useEffect(() => {
         // GET quizzes
-        if (isUserLoggedIn()) {
+        if (!isLoggedIn) {
             navigator("/login")
             return
         }       
@@ -53,7 +55,7 @@ export default function DashboardPage() {
         <>
             <NavBar />
             <div className="flex flex-col bg-slate-100 py-8 px-16 items-center h-screen">
-                <p className="mb-8 font-light text-3xl">Hello, Tega.</p>
+                <p className="mb-8 font-light text-3xl">Hello, {user.name}</p>
                 <div className="mb-8">
                     <Link className="bg-main p-3 rounded-xl text-white font-semibold flex justify-center 
                     gap-2 max-w-[170px] transition-colors hover:bg-main2">

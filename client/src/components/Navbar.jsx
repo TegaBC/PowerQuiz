@@ -17,7 +17,7 @@ export default function NavBar() {
                 <div className="hidden sm:flex justify-evenly gap-5 font-semibold max-h-8 items-center">
                 { isLoggedIn ?  
                     <>
-                    <Link to="/" className="text-slate-500 hover:text-black transition-colors">Dashboard</Link>
+                    <Link to="/dashboard" className="text-slate-500 hover:text-black transition-colors">Dashboard</Link>
                     </> 
                     :
                     <>

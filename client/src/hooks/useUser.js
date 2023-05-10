@@ -4,7 +4,9 @@ import { getCookies } from "../utility/cookie"
 import { useRef, useState } from "react"
 
 export const useUser = () => {
-    const [loggedIn, setLoggedIn] = useState(false)
+    // don't need to use state since whatever we call this hook from can re render, to avoid loops
+
+    const loggedIn = useRef(false)
     const userRef = useRef(null)
     
     const cookies = getCookies()
@@ -18,7 +20,7 @@ export const useUser = () => {
         const name = payload.name
 
         if(expiration > (Date.now() / 1000) ) {
-            setLoggedIn(true)
+            loggedIn.current = true
             userRef.current = {
                 name: name,
                 email: email,
@@ -26,5 +28,5 @@ export const useUser = () => {
         }
     }
     
-    return [loggedIn, userRef.current]
+    return [loggedIn.current, userRef.current]
 }

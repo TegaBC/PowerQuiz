@@ -76,12 +76,15 @@ export default function CreateQuizPage() {
                 {newQuestionMode === 1 && <OptionForm binQuestion={trashNewQuestion} finalizeQuestion={finalizeNewQuestion} />}
                 {newQuestionMode === 2 && <TextForm finalizeQuestion={finalizeNewQuestion}/>}
 
-
                 {!creatingNewQuestion ? 
-                <button onClick={() => setCreatingNewQuestion(true)} className="mt-4 bg-main p-2 rounded-xl 
-                text-white font-medium text-lg hover:bg-main2 transition-colors">New Question</button> 
+                <div className="flex gap-2">
+                    <button onClick={() => setCreatingNewQuestion(true)} className="mt-4 bg-main p-2 rounded-xl 
+                    text-white font-medium text-lg hover:bg-main2">New Question</button> 
+                    <button className="mt-4 bg-green-400 p-2 rounded-xl 
+                    text-white font-medium text-lg hover:bg-green-600">Finish Quiz</button> 
+                </div>
                 : 
-                <div className="flex flex-col gap-2 mt-4 p-4 text-white font-medium text-lg transition-colors border-slate-200 border-4 rounded-xl">
+                <div className="flex flex-col gap-2 mt-4 p-4 text-white font-medium text-lg border-slate-200 border-4 rounded-xl">
                     <span className="text-black">Type of question</span>
                     <button onClick={() => promptQuestionType(1)} className="bg-main p-2 rounded-md">Choice</button>
                     <button onClick={() => promptQuestionType(2)} className="bg-main p-2 rounded-md">Text</button>

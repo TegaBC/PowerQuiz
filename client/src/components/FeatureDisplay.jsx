@@ -1,7 +1,7 @@
 
-function createFeatures(feature) {
+function createFeatures(feature, index) {
     return (
-        <div className="flex items-center gap-10 h-30">
+        <div key={index} className="flex items-center gap-10 h-30">
             {/* Add in image here for the icons */}
             <img className="max-h-16 sm:max-h-24"  src={feature.img} alt="Feature Icon" />
             <div className="flex flex-col max-w-md justify-center">

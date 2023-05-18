@@ -15,14 +15,6 @@ export default function DashboardPage() {
     const promptedQuizDeleteId = useRef(null)
     const [isLoggedIn, user] = useUser()
 
-    /**
-     *  Quiz object
-     * 
-     *  name
-     *  responses
-     *  id
-     */
-
     useEffect(() => {
         // GET quizzes
         if (!isLoggedIn) {

@@ -13,10 +13,6 @@ const quizSchema = new mongoose.Schema({
         type: String,       // JSON format
         required: true,
     },
-    password: { // password if it is password protected quiz
-        type: String,
-        required: false
-    }
 })
 
 

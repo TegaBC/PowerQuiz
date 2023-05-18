@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import NavBar from "../components/Navbar"
 import OptionForm from "../components/QuestionComponents/OptionForm"
 import TextForm from "../components/QuestionComponents/TextForm"
 
 export default function CreateQuizPage() {
     // MODE: 1 = choice, 2 = text
+    const quizName = useRef()
     const [questions, setQuestions] = useState([])
     const [creatingNewQuestion, setCreatingNewQuestion] = useState(false)
     const [newQuestionMode, setNewQuestionMode] = useState(null)
@@ -33,13 +34,36 @@ export default function CreateQuizPage() {
         setQuestions([...questions, payload])
     }
 
+    // submit quiz to server
+    const submitQuiz = async () => {
+        // send along cookie and questions to the server, server should handle auth
+        const quizPayload = {name: quizName.current.value || quizName.current.placeholder, 
+            questions: questions}
+        
+            try {
+            const postRequest = await fetch("url", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(quizPayload),
+                });
+
+            const response = await postRequest.json()
+            console.log(response)
+        } catch (e) {
+            console.log("Error: " + e)
+        }
+
+    }
+
     return (
         <>
         <NavBar />
         <div className="flex justify-center">
             <div className="flex items-center justify-center flex-col bg-slate-100 max-w-4xl rounded-md py-6">
                 
-                <input className="mb-4 p-1 text-center text-4xl text-black placeholder-slate-500 bg-transparent"  
+                <input ref={quizName} className="mb-4 p-1 text-center text-4xl text-black placeholder-slate-500 bg-transparent"  
                 type="text" placeholder="Untitled Quiz"/>
                 {console.log(questions)}
                 {

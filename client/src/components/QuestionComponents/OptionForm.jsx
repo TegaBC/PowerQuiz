@@ -26,6 +26,7 @@ export default function OptionForm( {binQuestion, finalizeQuestion} ) {
         if (correctAnswer === null) return 
 
         const payload = {
+            //TODO: add correct answer to payload 
             question: questionName.current.value || questionName.current.placeholder,
             options: options,
             type: "option"

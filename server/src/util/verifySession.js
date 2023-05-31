@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 
 // abstracted function, returns token payload or false if an error happened.
 
-export default verifySession = (sessionCookie) => {
+export default (sessionCookie) => {
     // check sessionCookie actually exists, then verify it
     if(!sessionCookie) return false
 

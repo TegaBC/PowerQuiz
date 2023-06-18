@@ -12,7 +12,7 @@ export const getAllQuizzes = async (req, res) => {
 }
 
 //TODO: Create a new quiz after completing all checks
-export const createNewQuiz = (req, res) => {
+export const createNewQuiz = async (req, res) => {
     const authHeaderToken = req.headers.authorization.split(" ")[1] // get token from auth header
 
     const token = verifySession(authHeaderToken)
@@ -31,9 +31,15 @@ export const createNewQuiz = (req, res) => {
         }
     }
 
-    //TODO: save to database under the email of the user
-
-    // if created successfully it should redirect to the page of the quiz
-    console.log("Created quiz successfully")
-    return  res.status(200).json({message: "Ok"})
+    try {
+      //  await quizModel.create({
+       //     owner: token.email,
+        //    name: name,
+         //   questions: JSON.stringify(questions)
+        //})
+        
+        return res.status(200).json({message: "Quiz created."})
+    } catch (err) {
+        return res.status(500).json({message: "Internal server error occurred, please try again."})
+    }
 }

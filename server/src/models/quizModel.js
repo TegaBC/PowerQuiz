@@ -23,7 +23,7 @@ const quizSchema = new mongoose.Schema({
     {
         question: example?              // this is a multiple choice question
         options: [a, b, c, d, e, f]
-        answer: a
+        answer: 0
     }
 
       {

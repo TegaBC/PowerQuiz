@@ -4,6 +4,7 @@ import NavBar from "../components/Navbar"
 import OptionForm from "../components/QuestionComponents/OptionForm"
 import TextForm from "../components/QuestionComponents/TextForm"
 import Footer from "../components/Footer"
+import { useNavigate } from "react-router-dom"
 
 
 export default function CreateQuizPage() {
@@ -12,6 +13,7 @@ export default function CreateQuizPage() {
     const [questions, setQuestions] = useState([])
     const [creatingNewQuestion, setCreatingNewQuestion] = useState(false)
     const [newQuestionMode, setNewQuestionMode] = useState(null)
+    const navigator = useNavigate()
     
     // Prompts the user if they want a choice or text question to be added
     const promptQuestionType = (mode) => {
@@ -44,21 +46,26 @@ export default function CreateQuizPage() {
             questions: questions}
         
             try {
-            const postRequest = await fetch(`${serverAddress}/quiz/create`, {
+                const postRequest = await fetch(`${serverAddress}/quiz/create`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     authorization: `Bearer ${localStorage.getItem("token")}`
-                },
+                    },
                 body: JSON.stringify(quizPayload),
                 });
  
-            const response = await postRequest.json()
-            console.log(response)
-        } catch (e) {
-            console.log("Error: " + e)
-        }
+                const body = await postRequest.json()
 
+                if (postRequest.ok) {
+                    alert(body.message)
+                    navigator("/dashboard")
+                } else {
+                    alert(body.message)
+                }
+            } catch (e) {
+                alert("Error, please try again")
+            }
     }
 
     return (
@@ -70,9 +77,8 @@ export default function CreateQuizPage() {
                     
                     <input ref={quizName} className="mb-4 p-1 text-center text-4xl text-black placeholder-slate-500 bg-transparent"  
                     type="text" placeholder="Untitled Quiz"/>
-                    {console.log(questions)}
-                    {
-                    questions.map((payload, index) => {
+                    
+                    {questions.map((payload, index) => {
                         return <div key={index} 
                         className="flex flex-col gap-2 bg-slate-200 p-2 rounded-lg w-[75%] m-4">
                         <span className="flex justify-evenly mb-2 max-w-xs">
@@ -118,7 +124,6 @@ export default function CreateQuizPage() {
                         <button onClick={() => promptQuestionType(1)} className="bg-main p-2 rounded-md">Choice</button>
                         <button onClick={() => promptQuestionType(2)} className="bg-main p-2 rounded-md">Text</button>
                     </div>}
-                    
                 </div>
             </div>
         </div>

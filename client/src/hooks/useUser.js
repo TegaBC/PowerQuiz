@@ -1,7 +1,6 @@
 // custom useUser hook, returns if the user is logged in and information on the user from their token in the cookies
 import jwtDecode from "jwt-decode"
-import { getCookies } from "../utility/cookie"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 
 export const useUser = () => {
     // don't need to use state since whatever we call this hook from can re render, to avoid loops
@@ -9,8 +8,7 @@ export const useUser = () => {
     const loggedIn = useRef(false)
     const userRef = useRef(null)
     
-    const cookies = getCookies()
-    const sessionToken = cookies["session"]
+    const sessionToken = localStorage.getItem("token")
 
     if(sessionToken)  {
         const payload = jwtDecode(sessionToken)

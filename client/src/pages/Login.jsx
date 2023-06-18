@@ -29,7 +29,7 @@ export default function LoginPage() {
             const body = await response.json()
 
             if (response.ok) {
-
+                localStorage.setItem("token", body.token)
                 navigator(body.redirectUrl)
             } else {
                 setErrorMessage(body.message)

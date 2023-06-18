@@ -20,5 +20,5 @@ export const loginUser = async (req, res) => {
     const token = jwt.sign({email: user.email, name: user.name}, process.env.TOKEN_KEY, { expiresIn: "120m" })
     console.log("User has logged in, token: " + token)
 
-    return res.cookie("session", token, {sameSite: "none"}).status(200).json({redirectUrl: "/dashboard", message: "Successful"})
+    return res.status(200).json({redirectUrl: "/dashboard", message: "Successful", token: token})
 }

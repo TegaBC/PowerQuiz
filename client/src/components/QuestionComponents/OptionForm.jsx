@@ -22,7 +22,10 @@ export default function OptionForm( {binQuestion, finalizeQuestion} ) {
 
     // Gets the question payload and uses callback function
     const getQuestion = () => {
-        if (correctAnswer === null) return 
+        if (correctAnswer === null) {
+            alert("Option questions require an answer, check the box of the correct answer")
+            return
+        } 
 
         const payload = {
             answer: correctAnswer,

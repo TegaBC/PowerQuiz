@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
 import { useUser } from "../hooks/useUser"
 
+import { serverAddress } from "../config"
+
 export default function DashboardPage() {
     const navigator = useNavigate()
     const [quizzes, setQuizzes] = useState([])
@@ -16,11 +18,28 @@ export default function DashboardPage() {
     const [isLoggedIn, user] = useUser()
 
     useEffect(() => {
-        // GET quizzes
-        if (!isLoggedIn) {
-            navigator("/login")
-            return
-        }       
+        async function fetchData() {
+            if (!isLoggedIn) {
+                navigator("/login")
+            }    
+            
+            try {
+                const allQuizFetch = await fetch(`${serverAddress}/quiz/`, {
+                    method: "GET",
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                })
+
+                const body = await allQuizFetch.json()
+                setQuizzes(body)
+            } catch (err) {
+                alert("Could not get quizzes.")
+                console.log(err)
+            }
+        }
+        
+       fetchData()
     }, [])
     
     // close portal, open portal when del is clicked
@@ -49,7 +68,7 @@ export default function DashboardPage() {
         <>
             <NavBar />
             <div className="flex flex-col bg-slate-100 py-8 px-16 items-center h-screen">
-                <p className="mb-8 font-light text-3xl">Hello, {user.name}</p>
+                <p className="mb-8 font-light text-3xl text-center">Hello, {user.name}</p>
                 <div className="mb-8">
                     <Link to="/quiz/create" className="bg-main p-3 rounded-xl text-white font-semibold flex justify-center 
                     gap-2 max-w-[170px] transition-colors hover:bg-main2">
@@ -60,12 +79,12 @@ export default function DashboardPage() {
                     </Link>
                 </div>
 
-                <h1 className="font-medium">View Quizzes</h1>
+                <h1 className="font-medium text-center">View Quizzes</h1>
                 <DeletePortal open={portalOpen} closeModal={onPortalClose} onDelete={portalDelete}/>
-                
-                {quizzes.map(quiz => { 
-                    <QuizCard />
-                })}
+
+                <div className="flex gap-4 flex-wrap items-center justify-center">
+                {quizzes.map(quiz => <QuizCard deleteClick={promptDeleteQuiz} quiz={quiz} /> )}
+                </div>
             </div>
         </>
     )

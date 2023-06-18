@@ -1,7 +1,7 @@
 import BackgroundImage from "../images/backgroundquiz.png"
+import { Link } from "react-router-dom"
 
-export default function QuizCard( { deleteClick } ) {
-    return null
+export default function QuizCard( { quiz, deleteClick } ) {
 
     return (
         <div className="mt-4 flex flex-wrap gap-8">
@@ -13,7 +13,7 @@ export default function QuizCard( { deleteClick } ) {
                 <div className="flex bg-white flex-grow items-center justify-between pl-4 pr-8">
                     <div className=" flex flex-col justify-center">
                         <h1 className="font-medium">{quiz.name}</h1>
-                        <p className="text-sm">{quiz.responses} Responses</p>
+                        <p className="text-sm">- Responses</p>
                     </div>
                     <button onClick={deleteClick} className="transition-colors hover:text-red-500" href="">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

@@ -3,10 +3,13 @@ import quizModel from "../models/quizModel.js"
 
 //finds all quizzes associated with the email and returns them to client
 export const getAllQuizzes = async (req, res) => {
-    const token = verifySession(req.cookies.session)
-    if(!token) return res.clearCookie("session").status(401).json({message: "Session could not be authorized"})
+    const authHeaderToken = req.headers.authorization.split(" ")[1] // get token from auth header
+
+    const token = verifySession(authHeaderToken)
+    if(!token) return res.status(401).json({message: "Session could not be authorized"})
        
-    const quizzes = await quizModel.find({email: token.email})
+    const quizzes = await quizModel.find({owner: token.email})
+    console.log(quizzes)
 
     return res.status(200).json(quizzes)
 }

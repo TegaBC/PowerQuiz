@@ -25,6 +25,12 @@ export const createNewQuiz = (req, res) => {
     if (!name || !questions || name === "") return res.status(400).json({message: "Quiz name or questions do not exist"})
     if (!Array.isArray(questions)) return res.status(400).json({message: "Questions post format is malformed"})
 
+    for (const question of questions) {
+        if (question.type == "option" && !question.answer && !question.answer == 0) { // Make sure that we have the correct answer, 0 is valid
+            return res.status(400).json({message: "Question(s) are missing answers"})
+        }
+    }
+
     //TODO: save to database under the email of the user
 
     // if created successfully it should redirect to the page of the quiz

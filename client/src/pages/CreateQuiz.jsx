@@ -1,4 +1,5 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { serverAddress } from "../config"
 import NavBar from "../components/Navbar"
 import OptionForm from "../components/QuestionComponents/OptionForm"
 import TextForm from "../components/QuestionComponents/TextForm"
@@ -41,14 +42,15 @@ export default function CreateQuizPage() {
             questions: questions}
         
             try {
-            const postRequest = await fetch("url", {
+            const postRequest = await fetch(`${serverAddress}/quiz/create`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    credentials: "include"
                 },
                 body: JSON.stringify(quizPayload),
                 });
-
+ 
             const response = await postRequest.json()
             console.log(response)
         } catch (e) {
@@ -104,7 +106,7 @@ export default function CreateQuizPage() {
                 <div className="flex gap-2">
                     <button onClick={() => setCreatingNewQuestion(true)} className="mt-4 bg-main p-2 rounded-xl 
                     text-white font-medium text-lg hover:bg-main2">New Question</button> 
-                    <button className="mt-4 bg-green-400 p-2 rounded-xl 
+                    <button onClick={submitQuiz} className="mt-4 bg-green-400 p-2 rounded-xl 
                     text-white font-medium text-lg hover:bg-green-600">Finish Quiz</button> 
                 </div>
                 : 

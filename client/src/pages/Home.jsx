@@ -68,16 +68,6 @@ const action = {
 }
 
 export default function HomePage() {
-
-    useEffect(() => {
-        fetch(`${serverAddress}/`, {
-            headers: {
-                "Content-Type": "application/json",
-                credentials: "include"
-            },
-        })
-    }, [])
-
    return(
     <>
         <NavBar />

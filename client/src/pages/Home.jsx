@@ -15,6 +15,9 @@ import imgMale1 from "../images/teacher.png"
 import imgMale2 from "../images/teacher1.png"
 import imgFemale from "../images/teacher2.png"
 import CallToAction from "../components/CallToAction"
+import { useEffect } from "react"
+
+import { serverAddress } from "../config"
 
 // features for component
 const featureDisplay = [
@@ -65,6 +68,16 @@ const action = {
 }
 
 export default function HomePage() {
+
+    useEffect(() => {
+        fetch(`${serverAddress}/`, {
+            headers: {
+                "Content-Type": "application/json",
+                credentials: "include"
+            },
+        })
+    }, [])
+
    return(
     <>
         <NavBar />

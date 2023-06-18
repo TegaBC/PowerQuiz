@@ -103,7 +103,7 @@ export default function CreateQuizPage() {
                     })}
 
                     {newQuestionMode === 1 && <OptionForm binQuestion={trashNewQuestion} finalizeQuestion={finalizeNewQuestion} />}
-                    {newQuestionMode === 2 && <TextForm finalizeQuestion={finalizeNewQuestion}/>}
+                    {newQuestionMode === 2 && <TextForm finalizeQuestion={finalizeNewQuestion} binQuestion={trashNewQuestion}/>}
 
                     {!creatingNewQuestion ? 
                     <div className="flex gap-2">

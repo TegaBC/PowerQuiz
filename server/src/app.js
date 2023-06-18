@@ -30,8 +30,8 @@ app.use("/register", registerRouter)
 app.use("/login", loginRouter)
 
 app.get("/", (req, res) => {
-    console.log(req.cookies)
-    res.status(200).json("Ok")
+    console.log("COOKIES: ", req.cookies)
+    res.cookie("test-cookie2", "value2").status(200).json("Cookie set")
 })
 
 // Connect to mongodb
@@ -45,4 +45,4 @@ mongoose.connect(process.env.MONGO_URI, {
 // start
 app.listen(port, () => {
     console.log("Server is listening on port " + port)
-})
+})  

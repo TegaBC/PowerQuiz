@@ -29,6 +29,7 @@ export default function LoginPage() {
             const body = await response.json()
 
             if (response.ok) {
+
                 navigator(body.redirectUrl)
             } else {
                 setErrorMessage(body.message)

@@ -13,8 +13,10 @@ export const getAllQuizzes = async (req, res) => {
 
 //TODO: Create a new quiz after completing all checks
 export const createNewQuiz = (req, res) => {
+    console.log("Request Hit")
+    console.log(req.cookies)
     const token = verifySession(req.cookies.session)
-    if(!token) return res.clearCookie("session").status(401).json({message: "Session could not be authorized"})
+    if(!token) return res.status(401).json({message: "Session could not be authorized"})
 
     const quiz = req.body
     const name = quiz.name

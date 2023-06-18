@@ -13,9 +13,9 @@ export const getAllQuizzes = async (req, res) => {
 
 //TODO: Create a new quiz after completing all checks
 export const createNewQuiz = (req, res) => {
-    console.log("Request Hit")
-    console.log(req.cookies)
-    const token = verifySession(req.cookies.session)
+    const authHeaderToken = req.headers.authorization.split(" ")[1] // get token from auth header
+
+    const token = verifySession(authHeaderToken)
     if(!token) return res.status(401).json({message: "Session could not be authorized"})
 
     const quiz = req.body
@@ -23,10 +23,11 @@ export const createNewQuiz = (req, res) => {
     const questions = quiz.questions
 
     if (!name || !questions || name === "") return res.status(400).json({message: "Quiz name or questions do not exist"})
-    if (!questions.isArray()) return res.status(400).json({message: "Questions post format is malformed"})
+    if (!Array.isArray(questions)) return res.status(400).json({message: "Questions post format is malformed"})
 
-    // save to database under the email of the user
+    //TODO: save to database under the email of the user
 
     // if created successfully it should redirect to the page of the quiz
+    console.log("Created quiz successfully")
     return  res.status(200).json({message: "Ok"})
 }

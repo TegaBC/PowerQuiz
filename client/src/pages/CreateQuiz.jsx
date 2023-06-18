@@ -46,7 +46,7 @@ export default function CreateQuizPage() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    credentials: "include"
+                    authorization: `Bearer ${localStorage.getItem("token")}`
                 },
                 body: JSON.stringify(quizPayload),
                 });

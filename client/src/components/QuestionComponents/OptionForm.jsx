@@ -5,7 +5,6 @@ export default function OptionForm( {binQuestion, finalizeQuestion} ) {
         ["Option 1" , "Option 2"]
     )
     const [correctAnswer, setCorrectAnswer] = useState(null)
-
     const questionName = useRef()
 
     // Creates a new basic option
@@ -26,7 +25,7 @@ export default function OptionForm( {binQuestion, finalizeQuestion} ) {
         if (correctAnswer === null) return 
 
         const payload = {
-            //TODO: add correct answer to payload 
+            answer: correctAnswer,
             question: questionName.current.value || questionName.current.placeholder,
             options: options,
             type: "option"

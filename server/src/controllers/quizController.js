@@ -14,7 +14,6 @@ export const getAllQuizzes = async (req, res) => {
     return res.status(200).json(quizzes)
 }
 
-//TODO: Create a new quiz after completing all checks
 export const createNewQuiz = async (req, res) => {
     const authHeaderToken = req.headers.authorization.split(" ")[1] // get token from auth header
 
@@ -44,5 +43,26 @@ export const createNewQuiz = async (req, res) => {
         return res.status(200).json({message: "Quiz created."})
     } catch (err) {
         return res.status(500).json({message: "Internal server error occurred, please try again."})
+    }
+}
+
+export const getQuizFromId = async (req, res) => {
+    // Quizzes is an unauthorized endpoint, for ease of students.
+    const quizId = req.body.id
+
+    try {
+        const requestedQuiz = await quizModel.findById(quizId)
+        
+        if (!requestedQuiz) { 
+            return req.status(400).json({ message: "Could not find requested quiz"})
+        } else {
+            const quizObject = JSON.parse(requestedQuiz)
+            delete quizObject.owner
+            return req.status(200).json({ message: "Successful", quiz: quizObject })
+        }
+
+    } catch (err) {
+        console.log()
+        return req.status(500).json({ message: "Server error whilst fetching quiz" })
     }
 }

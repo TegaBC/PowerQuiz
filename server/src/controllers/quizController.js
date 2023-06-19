@@ -56,7 +56,7 @@ export const getQuizFromId = async (req, res) => {
         if (!requestedQuiz) { 
             return res.status(400).json({ message: "Could not find requested quiz"})
         } else {
-            return res.status(200).json({ message: "Successful", quiz: requestedQuiz.questions })
+            return res.status(200).json({ message: "Successful", quiz: requestedQuiz.questions, name: requestedQuiz.name})
         }
 
     } catch (err) {

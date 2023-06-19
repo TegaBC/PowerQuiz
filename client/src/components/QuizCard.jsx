@@ -5,7 +5,7 @@ export default function QuizCard( { quiz, deleteClick } ) {
 
     return (
         <div className="mt-4 flex flex-wrap gap-8">
-            <Link className="flex flex-col min-w-xs rounded-xl border-2 
+            <Link to={`/quiz/${quiz._id}`} className="flex flex-col min-w-xs rounded-xl border-2 
             min-h-[230px] min-w-[200px] overflow-hidden border-slate-300 hover:border-slate-700 transition-colors">
                 <div className="bg-main h-[60%] w-60 overflow-clip">
                     <img className="h-full w-full object-cover" src={BackgroundImage} alt="" />
@@ -13,7 +13,7 @@ export default function QuizCard( { quiz, deleteClick } ) {
                 <div className="flex bg-white flex-grow items-center justify-between pl-4 pr-8">
                     <div className=" flex flex-col justify-center">
                         <h1 className="font-medium">{quiz.name}</h1>
-                        <p className="text-sm">- Responses</p>
+                        <p className="text-sm">{quiz.responses.length} Responses</p>
                     </div>
                     <button onClick={deleteClick} className="transition-colors hover:text-red-500" href="">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

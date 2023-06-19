@@ -36,7 +36,7 @@ export const createNewQuiz = async (req, res) => {
         await quizModel.create({
             owner: token.email,
             name: name,
-            questions: JSON.stringify(questions)
+            questions: questions
         })
         
         return res.status(200).json({message: "Quiz created."})

@@ -10,13 +10,13 @@ const quizSchema = new mongoose.Schema({
         required: true
     },
     questions: {
-        type: String,       // JSON format
+        type: Array,       // JSON format
         required: true,
     },
     responses: {
-        type: String,       // JSON format
+        type: Array,
         required: true,
-        default: "[]"
+        default: [],
     }
 })
 

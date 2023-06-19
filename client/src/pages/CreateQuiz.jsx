@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { serverAddress } from "../config"
 import NavBar from "../components/Navbar"
-import OptionForm from "../components/QuestionComponents/OptionForm"
-import TextForm from "../components/QuestionComponents/TextForm"
+import OptionForm from "../components/QuizBuilder/OptionForm"
+import TextForm from "../components/QuizBuilder/TextForm"
 import Footer from "../components/Footer"
 import { useNavigate } from "react-router-dom"
 

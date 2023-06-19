@@ -9,7 +9,6 @@ export const getAllQuizzes = async (req, res) => {
     if(!token) return res.status(401).json({message: "Session could not be authorized"})
        
     const quizzes = await quizModel.find({owner: token.email})
-    console.log(quizzes)
 
     return res.status(200).json(quizzes)
 }

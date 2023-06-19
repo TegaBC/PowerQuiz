@@ -1,10 +1,10 @@
 import express from "express";
-import { createNewQuiz, getAllQuizzes } from "../controllers/quizController.js";
+import { createNewQuiz, getAllQuizzes, getQuizFromId } from "../controllers/quizController.js";
 
 const quizRouter = express.Router() 
 
 quizRouter.get("/", getAllQuizzes)
-quizRouter.get("/fromId", getAllQuizzes)
+quizRouter.get("/:id", getQuizFromId)
 quizRouter.post("/create", createNewQuiz)
 
 

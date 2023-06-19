@@ -11,12 +11,12 @@ export default function QuizPage() {
         //TODO: Finish function to get quiz from the server
         async function fetchQuiz() {
             try {
-                const getQuizFetch = await fetch(`${serverAddress}/quiz/fromId`)
+                const getQuizFetch = await fetch(`${serverAddress}/quiz/${id}`)
                 const body = await getQuizFetch.json()
 
                 if(getQuizFetch.ok) {
                     console.log("Quiz details: ", body.quiz)
-                    
+
 
                 } else { 
                     alert(body.message)

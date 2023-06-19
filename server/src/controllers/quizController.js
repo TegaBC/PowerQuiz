@@ -48,21 +48,20 @@ export const createNewQuiz = async (req, res) => {
 
 export const getQuizFromId = async (req, res) => {
     // Quizzes is an unauthorized endpoint, for ease of students.
-    const quizId = req.body.id
+    const quizId = req.params.id
 
     try {
         const requestedQuiz = await quizModel.findById(quizId)
         
         if (!requestedQuiz) { 
-            return req.status(400).json({ message: "Could not find requested quiz"})
+            return res.status(400).json({ message: "Could not find requested quiz"})
         } else {
-            const quizObject = JSON.parse(requestedQuiz)
-            delete quizObject.owner
-            return req.status(200).json({ message: "Successful", quiz: quizObject })
+            const quizObject = JSON.parse(requestedQuiz.questions)
+            return res.status(200).json({ message: "Successful", quiz: quizObject })
         }
 
     } catch (err) {
-        console.log()
-        return req.status(500).json({ message: "Server error whilst fetching quiz" })
+        console.log(err)
+        return res.status(500).json({ message: "Server error whilst fetching quiz" })
     }
 }

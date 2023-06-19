@@ -16,6 +16,7 @@ const quizSchema = new mongoose.Schema({
     responses: {
         type: String,       // JSON format
         required: true,
+        default: "[]"
     }
 })
 

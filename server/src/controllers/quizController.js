@@ -41,6 +41,7 @@ export const createNewQuiz = async (req, res) => {
         
         return res.status(200).json({message: "Quiz created."})
     } catch (err) {
+        console.log(err)
         return res.status(500).json({message: "Internal server error occurred, please try again."})
     }
 }

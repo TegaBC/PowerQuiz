@@ -5,11 +5,11 @@ export default function QuizCard( { quiz, deleteClick } ) {
 
     return (
         <div className="mt-4 flex flex-wrap gap-8">
-            <Link to={`/quiz/${quiz._id}`} className="flex flex-col min-w-xs rounded-xl border-2 
+            <div className="flex flex-col min-w-xs rounded-xl border-2 
             min-h-[230px] min-w-[200px] overflow-hidden border-slate-300 hover:border-slate-700 transition-colors">
-                <div className="bg-main h-[60%] w-60 overflow-clip">
+                <Link to={`/quiz/${quiz._id}`} className="bg-main h-[60%] w-60 overflow-clip">
                     <img className="h-full w-full object-cover" src={BackgroundImage} alt="" />
-                </div>
+                </Link>
                 <div className="flex bg-white flex-grow items-center justify-between pl-4 pr-8">
                     <div className=" flex flex-col justify-center">
                         <h1 className="font-medium">{quiz.name}</h1>
@@ -21,7 +21,7 @@ export default function QuizCard( { quiz, deleteClick } ) {
                         </svg>
                     </button>
                 </div>
-            </Link>
+            </div>
         </div>
     )
 }

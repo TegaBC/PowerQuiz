@@ -1,16 +1,18 @@
 import Navbar from "../components/Navbar"
 import Footer from  "../components/Footer"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useAsyncError, useParams } from "react-router-dom"
 import { serverAddress } from "../config"
 import TextQuestion from "../components/QuizViewer/TextQuestion"
 import ChoiceQuestion from "../components/QuizViewer/ChoiceQuestion"
+import SubmitQuizPortal from "../components/SubmitQuizPortal"
 
 export default function QuizPage() {
     const { id } = useParams()
     const [quizName, setQuizName] = useState("")
     const [questions, setQuestions] = useState([])
     const [answers, setAnswers] = useState([])
+    const [portalOpen, setPortalOpen] = useState(false)
 
     useEffect(() => {
         //TODO: Finish function to get quiz from the server
@@ -42,6 +44,19 @@ export default function QuizPage() {
         console.log(allAnswers)
     }
 
+    // Portal settings
+    const onPortalClose = () => {
+        setPortalOpen(false)
+    }
+
+    const submitQuiz = (quizFeedback) => {
+        setPortalOpen(false)
+     
+        // run submit logic here
+
+        e.stopPropagation()
+    }
+
     return <>
         <Navbar />
         <div className="h-screen">
@@ -61,6 +76,12 @@ export default function QuizPage() {
                             }
                         })}
                     </div>
+
+                    <div>
+                        <button onClick={() => setPortalOpen(true)} className="mt-4 bg-green-400 p-2 rounded-xl 
+                        text-white font-medium text-lg hover:bg-green-600">Finish Quiz</button> 
+                    </div>
+                    <SubmitQuizPortal open={portalOpen} closeModal={onPortalClose} action={submitQuiz} />
                 </div>
             </div>
         </div>

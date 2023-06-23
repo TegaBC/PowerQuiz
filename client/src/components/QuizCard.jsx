@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export default function QuizCard( { quiz, deleteClick } ) {
 
-    async function copyToClipboard(id) {
+    async function copyToClipboard() {
         const domain = window.location.host
         const quizUrl = `${domain}/quiz/${quiz._id}`
         await navigator.clipboard.writeText(quizUrl)

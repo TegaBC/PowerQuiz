@@ -93,3 +93,25 @@ export const submitQuizResponse = async (req, res) => {
         }
     }
 }
+
+export const deleteQuiz = async (req, res) => {
+    // check that the user actually owns the quiz
+    const id = req.body.id
+    const authHeaderToken = req.headers.authorization?.split(" ")[1] // get token from auth header
+    const token = verifySession(authHeaderToken)
+    if(!token) return res.status(401).json({message: "Session could not be authorized"})
+
+    try {
+        const quiz = await quizModel.findById(id)
+        
+        if (quiz.owner === token.email) {
+            await quizModel.findByIdAndDelete(id)
+            return res.status(200).json( { message: "Deleted quiz" })
+        } else {
+            return res.status(401).json( { message: "Unauthorized deletion, delete failed." } )
+        }
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json( { message: "Server error occurred whilst attempting deletion." } )
+    }
+}

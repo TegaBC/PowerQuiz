@@ -48,15 +48,36 @@ export default function DashboardPage() {
         console.log("Modal closed, delete aborted.")
     }
 
-    const promptDeleteQuiz = (e) => {
-       // promptedQuizDeleteId.current = {some sort of uid}
+    const promptDeleteQuiz = (id) => {
+        promptedQuizDeleteId.current = id
         setPortalOpen(true)
     }
 
-    const portalDelete = (e) => {
+    const portalDelete = async (e) => {
         setPortalOpen(false)
-        // run logic to delete the quiz
-        console.log("Deleted quiz")
+
+        try {
+            const deleteRequest = await fetch(`${serverAddress}/quiz/delete`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({id: promptedQuizDeleteId.current})
+            })
+
+            const body = await deleteRequest.json()
+
+            if (deleteRequest.ok) {
+                alert(body.message)
+                location.reload() // show updated list 
+            } else {
+                alert(body.message)
+            }
+        } catch(err) {
+            console.log(err)
+            alert("Delete request failed to send")
+        }
        
         // stop event from bubbling up
         e.stopPropagation()
@@ -83,7 +104,7 @@ export default function DashboardPage() {
                 <DeletePortal open={portalOpen} closeModal={onPortalClose} onDelete={portalDelete}/>
 
                 <div className="flex gap-4 flex-wrap items-center justify-center">
-                {quizzes.map(quiz => <QuizCard deleteClick={promptDeleteQuiz} quiz={quiz} /> )}
+                {quizzes.map(quiz => <QuizCard key={quiz._id} deleteClick={() => promptDeleteQuiz(quiz._id)} quiz={quiz} /> )}
                 </div>
             </div>
         </>

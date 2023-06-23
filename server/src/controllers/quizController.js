@@ -64,3 +64,32 @@ export const getQuizFromId = async (req, res) => {
         return res.status(500).json({ message: "Server error whilst fetching quiz" })
     }
 }
+
+export const submitQuizResponse = async (req, res) => {
+    // client should send a simple object, save directly to db. All fields are required except feedback.
+
+    const answers = req.body.answers
+    const name = req.body.name
+    const feedback = req.body.feedback
+    const id = req.body.id
+
+    if (!name || !answers || !Array.isArray(answers)) {
+        return res.status(400).json({ message: "Malformed quiz response (missing answers or name)" })
+    } else {
+        // Save to database
+        try {
+            const quiz = await quizModel.findById(id)
+            const response =  {
+                name: name,
+                answers: answers,
+                feedback: feedback,
+            }
+            const updatedResponseArray = [...quiz.responses, response]
+
+            await quizModel.findByIdAndUpdate(id, {responses: updatedResponseArray})
+            return res.status(200).json({ message: "Response received and saved"} )
+        } catch (e) {
+            return res.status(500).json({ message: "Internal server error"} )
+        }
+    }
+}

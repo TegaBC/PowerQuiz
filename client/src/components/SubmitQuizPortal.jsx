@@ -9,8 +9,8 @@ export default function SubmitQuizPortal( { open, closeModal, action } ) {
 
     function actionButtonClick() {
         const quizFeedbackPayload = {
-            feedback: feedback.value,
-            name: name.value
+            feedback: feedback.current.value,
+            name: name.current.value
         }
 
         action(quizFeedbackPayload)

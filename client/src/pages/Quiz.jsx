@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar"
 import Footer from  "../components/Footer"
 import { useEffect, useState } from "react"
-import { useAsyncError, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { serverAddress } from "../config"
 import TextQuestion from "../components/QuizViewer/TextQuestion"
 import ChoiceQuestion from "../components/QuizViewer/ChoiceQuestion"
@@ -13,6 +13,7 @@ export default function QuizPage() {
     const [questions, setQuestions] = useState([])
     const [answers, setAnswers] = useState([])
     const [portalOpen, setPortalOpen] = useState(false)
+    const navigator = useNavigate()
 
     useEffect(() => {
         //TODO: Finish function to get quiz from the server
@@ -41,7 +42,6 @@ export default function QuizPage() {
         const allAnswers = [...answers]
         allAnswers[index] = answer // answer index matches the question index
         setAnswers(allAnswers)
-        console.log(allAnswers)
     }
 
     // Portal settings
@@ -49,12 +49,32 @@ export default function QuizPage() {
         setPortalOpen(false)
     }
 
-    const submitQuiz = (quizFeedback) => {
+    const submitQuiz = async (quizPayload) => {
         setPortalOpen(false)
-     
-        // run submit logic here
 
-        e.stopPropagation()
+        quizPayload.answers = answers // add answers and id to payload before sending to the server
+        quizPayload.id = id
+
+        try {
+            const submitRequest = await fetch(`${serverAddress}/quiz/submit`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "POST",
+                body: JSON.stringify(quizPayload)
+            })
+
+            const body = await submitRequest.json()
+
+            if (submitRequest.ok) {
+                alert("Quiz completed!")
+                navigator("/")
+            } else {
+                alert(body.message)
+            }
+        } catch (err) {
+            alert(err)
+        }
     }
 
     return <>
